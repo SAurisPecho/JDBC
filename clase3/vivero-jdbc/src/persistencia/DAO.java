@@ -1,3 +1,4 @@
+package persistencia;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -5,7 +6,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public abstract class DAO {
-
     protected Connection conexion = null;
     protected ResultSet resultSet = null;
     protected Statement statement = null;
@@ -13,8 +13,8 @@ public abstract class DAO {
     private final String PORT = "3306";
     private final String USER = "root";
     private final String PASSWORD = "root";
-    private final String DATABASE = "vivero";
-    private final String DRIVER = "com.mysql.cj.jdbc.Driver";
+    private final String DATABASE = "vivero2";
+    private final String DRIVER = "com.mysql.jdbc.Driver";
     private final String ZONA = "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false";
     
     protected void connectarDataBase() throws SQLException, ClassNotFoundException {
@@ -28,22 +28,46 @@ public abstract class DAO {
             throw e;
         }
     }
-
     protected void desconectarDataBase() throws SQLException, ClassNotFoundException {
         try {
             if (resultSet != null) {
-            resultSet.close();
+                resultSet.close();
             }
             if (statement != null) {
-            statement.close();
+                statement.close();
             }
             if (conexion != null) {
-            conexion.close();
+                conexion.close();
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
             throw e;
         }
     }
-}
 
+    protected void insertarModificarEliminarDataBase(String sql) throws SQLException, ClassNotFoundException {
+        try {
+            connectarDataBase();
+            statement = conexion.createStatement();
+            statement.executeUpdate(sql);
+        } catch (Exception e) {
+            System.out.println("Error en la operacion: "+e.getMessage());
+            throw e;
+        } finally {
+            desconectarDataBase();
+        }
+    }
+
+    protected void consultarDataBase (String sql) throws SQLException, ClassNotFoundException {
+        try {
+            connectarDataBase();
+            statement = conexion.createStatement();
+            resultSet = statement.executeQuery(sql);
+        } catch (Exception e) {
+            System.out.println("Error en la operacion: "+e.getMessage());
+            throw e;
+        } finally {
+            desconectarDataBase();
+        }
+    }
+}

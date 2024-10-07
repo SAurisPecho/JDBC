@@ -1,12 +1,12 @@
-INSERT INTO oficina VALUES (1, 'BCN-ES','Barcelona','España','Barcelona','08019','+34 93 3561182');
-INSERT INTO oficina VALUES (2, 'BOS-USA','Boston','EEUU','MA','02108','+1 215 837 0825');
-INSERT INTO oficina VALUES (3, 'LON-UK','Londres','Inglaterra','EMEA','EC2N 1HN','+44 20 78772041');
-INSERT INTO oficina VALUES (4, 'MAD-ES','Madrid','España','Madrid','28032','+34 91 7514487');
-INSERT INTO oficina VALUES (5, 'PAR-FR','Paris','Francia','EMEA','75017','+33 14 723 4404');
-INSERT INTO oficina VALUES (6, 'SFC-USA','San Francisco','EEUU','CA','94080','+1 650 219 4782');
-INSERT INTO oficina VALUES (7, 'SYD-AU','Sydney','Australia','APAC','NSW 2010','+61 2 9264 2451');
-INSERT INTO oficina VALUES (8, 'TAL-ES','Talavera de la Reina','España','Castilla-LaMancha','45632','+34 925 867231');
-INSERT INTO oficina VALUES (9, 'TOK-JP','Tokyo','Japón','Chiyoda-Ku','102-8578','+81 33 224 5000');
+INSERT INTO oficina (codigo_oficina, ciudad, pais, region, codigo_postal, telefono) VALUES ('BCN-ES','Barcelona','España','Barcelona','08019','+34 93 3561182');
+INSERT INTO oficina (codigo_oficina, ciudad, pais, region, codigo_postal, telefono) VALUES ('BOS-USA','Boston','EEUU','MA','02108','+1 215 837 0825');
+INSERT INTO oficina (codigo_oficina, ciudad, pais, region, codigo_postal, telefono) VALUES ('LON-UK','Londres','Inglaterra','EMEA','EC2N 1HN','+44 20 78772041');
+INSERT INTO oficina (codigo_oficina, ciudad, pais, region, codigo_postal, telefono) VALUES ('MAD-ES','Madrid','España','Madrid','28032','+34 91 7514487');
+INSERT INTO oficina (codigo_oficina, ciudad, pais, region, codigo_postal, telefono) VALUES ('PAR-FR','Paris','Francia','EMEA','75017','+33 14 723 4404');
+INSERT INTO oficina (codigo_oficina, ciudad, pais, region, codigo_postal, telefono) VALUES ('SFC-USA','San Francisco','EEUU','CA','94080','+1 650 219 4782');
+INSERT INTO oficina (codigo_oficina, ciudad, pais, region, codigo_postal, telefono) VALUES ('SYD-AU','Sydney','Australia','APAC','NSW 2010','+61 2 9264 2451');
+INSERT INTO oficina (codigo_oficina, ciudad, pais, region, codigo_postal, telefono) VALUES ('TAL-ES','Talavera de la Reina','España','Castilla-LaMancha','45632','+34 925 867231');
+INSERT INTO oficina (codigo_oficina, ciudad, pais, region, codigo_postal, telefono) VALUES ('TOK-JP','Tokyo','Japón','Chiyoda-Ku','102-8578','+81 33 224 5000');
 
 
 INSERT INTO empleado VALUES (1,1,'Marcos','Magaña','3897','marcos@jardineria.es',1,NULL,'Director General');
@@ -148,7 +148,7 @@ INSERT INTO producto VALUES (48,'FR-31','Ciruelo Santa Rosa',4,'','Frutales Tala
 INSERT INTO producto VALUES (49,'FR-32','Ciruelo Golden Japan',4,'','Frutales Talavera S.A','árbol de tamaño mediano que alcanza una altura máxima de 5-6 m. Tronco de corteza pardo-azulada, brillante, lisa o agrietada longitudinalmente. Produce ramas alternas, pequeñas, delgadas, unas veces lisas, glabras y otras pubescentes y vellosas',400,8,6);
 INSERT INTO producto VALUES (50,'FR-33','Ciruelo Friar',4,'','Frutales Talavera S.A','árbol de tamaño mediano que alcanza una altura máxima de 5-6 m. Tronco de corteza pardo-azulada, brillante, lisa o agrietada longitudinalmente. Produce ramas alternas, pequeñas, delgadas, unas veces lisas, glabras y otras pubescentes y vellosas',400,8,6);
 
-  
+
 INSERT INTO detalle_pedido VALUES (1,1,45,10,70,3);
 INSERT INTO detalle_pedido VALUES (2,1,46,40,4,1);
 INSERT INTO detalle_pedido VALUES (3,1,31,25,4,2);
@@ -282,7 +282,7 @@ INSERT INTO detalle_pedido VALUES (133,39,30,6,12,2);
 INSERT INTO detalle_pedido VALUES (134,40,1,4,1,1);
 INSERT INTO detalle_pedido VALUES (135,40,2,8,1,2);
 
-  
+
 INSERT INTO pago VALUES (1,1,'PayPal','ak-std-000001','2008-11-10',2000);
 INSERT INTO pago VALUES (2,1,'PayPal','ak-std-000002','2008-12-10',2000);
 INSERT INTO pago VALUES (3,3,'PayPal','ak-std-000003','2009-01-16',5000);
@@ -302,10 +302,12 @@ INSERT INTO pago VALUES (16,15,'PayPal','ak-std-000016','2009-01-15',2081);
 INSERT INTO pago VALUES (17,15,'PayPal','ak-std-000035','2009-02-15',10000);
 INSERT INTO pago VALUES (18,16,'PayPal','ak-std-000017','2009-02-16',4399);
 INSERT INTO pago VALUES (19,19,'PayPal','ak-std-000018','2009-03-06',232);
-INSERT INTO pago VALUES (20,23,'PayPal','ak-std-000019','2009-03-26',272);
-INSERT INTO pago VALUES (21,26,'PayPal','ak-std-000020','2008-03-18',18846);
-INSERT INTO pago VALUES (22,27,'PayPal','ak-std-000021','2009-02-08',10972);
-INSERT INTO pago VALUES (23,28,'PayPal','ak-std-000022','2009-01-13',8489);
-INSERT INTO pago VALUES (24,30,'PayPal','ak-std-000024','2009-01-16',7863);
-INSERT INTO pago VALUES (25,35,'PayPal','ak-std-000025','2007-10-06',3321);
-INSERT INTO pago VALUES (26,38,'PayPal','ak-std-000026','2006-05-26',1171);
+
+-- NO REGISTRADOS
+-- INSERT INTO pago VALUES (20,23,'PayPal','ak-std-000019','2009-03-26',272);
+-- INSERT INTO pago VALUES (21,26,'PayPal','ak-std-000020','2008-03-18',18846);
+-- INSERT INTO pago VALUES (22,27,'PayPal','ak-std-000021','2009-02-08',10972);
+-- INSERT INTO pago VALUES (23,28,'PayPal','ak-std-000022','2009-01-13',8489);
+-- INSERT INTO pago VALUES (24,30,'PayPal','ak-std-000024','2009-01-16',7863);
+-- INSERT INTO pago VALUES (25,35,'PayPal','ak-std-000025','2007-10-06',3321);
+-- INSERT INTO pago VALUES (26,38,'PayPal','ak-std-000026','2006-05-26',1171);

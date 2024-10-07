@@ -113,4 +113,12 @@ CREATE TABLE IF NOT EXISTS detalle_pedido (
 );
 
 USE vivero;
+DESCRIBE oficina;
 
+ALTER TABLE detalle_pedido
+MODIFY id_detalle_pedido INT AUTO_INCREMENT;
+
+-- ALTER TABLE empleado DROP FOREIGN KEY empleado_ibfk_1;
+
+-- SHOW CREATE TABLE oficina;
+-- ALTER TABLE empleado DROP FOREIGN KEY id_oficina;
