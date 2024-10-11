@@ -118,6 +118,8 @@ DESCRIBE oficina;
 ALTER TABLE detalle_pedido
 MODIFY id_detalle_pedido INT AUTO_INCREMENT;
 
+DESCRIBE detalle_pedido;
+
 -- ALTER TABLE empleado DROP FOREIGN KEY empleado_ibfk_1;
 
 -- SHOW CREATE TABLE oficina;

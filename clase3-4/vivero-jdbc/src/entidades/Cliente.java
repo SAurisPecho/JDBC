@@ -70,7 +70,7 @@ public class Cliente {
 
     public String getNombreCliente() {
         return nombreCliente;
-    }
+    }    
 
     public void setNombreCliente(String nombreCliente) {
         this.nombreCliente = nombreCliente;
@@ -174,5 +174,9 @@ public class Cliente {
                 "\n  Límite de Crédito: " + limiteCredito +
                 "\n}";
     }
+
     
+    public void imprimirNyA (){
+        System.out.println("ID: "+this.idCliente+" - Nombre: "+this.nombreContacto+" - Apellido: "+this.apellidoContacto);
+    }
 }

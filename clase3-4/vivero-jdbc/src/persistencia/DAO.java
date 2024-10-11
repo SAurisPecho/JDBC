@@ -14,7 +14,7 @@ public abstract class DAO {
     private final String USER = "root";
     private final String PASSWORD = "root";
     private final String DATABASE = "vivero2";
-    private final String DRIVER = "com.mysql.jdbc.Driver";
+    private final String DRIVER = "com.mysql.cj.jdbc.Driver";
     private final String ZONA = "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false";
     
     protected void connectarDataBase() throws SQLException, ClassNotFoundException {
@@ -66,8 +66,6 @@ public abstract class DAO {
         } catch (Exception e) {
             System.out.println("Error en la operacion: "+e.getMessage());
             throw e;
-        } finally {
-            desconectarDataBase();
-        }
+        } 
     }
 }

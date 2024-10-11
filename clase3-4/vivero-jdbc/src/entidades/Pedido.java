@@ -111,4 +111,8 @@ public class Pedido {
                 "\n  ID Cliente: " + idCliente +
                 "\n}";
     }    
+
+    public void imprimirIdFechaEstado () {
+        System.out.println("ID : "+this.idPedido+" - Fecha Pedido: "+this.fechaPedido+" - Estado: "+this.estado);
+    }
 }
