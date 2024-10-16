@@ -58,7 +58,8 @@ public abstract class DAO {
         }
     }
 
-    protected void consultarDataBase (String sql) throws SQLException, ClassNotFoundException {
+    protected ResultSet consultarDataBase (String sql) throws SQLException, ClassNotFoundException {
+        ResultSet resultSet = null;
         try {
             connectarDataBase();
             statement = conexion.createStatement();
@@ -67,5 +68,6 @@ public abstract class DAO {
             System.out.println("Error en la operacion: "+e.getMessage());
             throw e;
         } 
+        return resultSet;
     }
 }

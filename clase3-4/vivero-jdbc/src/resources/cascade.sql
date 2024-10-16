@@ -27,3 +27,7 @@ FROM
 WHERE 
     TABLE_SCHEMA = 'vivero2'
     AND TABLE_NAME = 'detalle_pedido';
+
+
+DELETE FROM pedido
+WHERE id_pedido = 74;

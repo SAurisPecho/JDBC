@@ -1,5 +1,6 @@
 package persistencia;
 import java.util.ArrayList;
+import java.sql.ResultSet;
 import java.util.List;
 
 import entidades.Cliente;
@@ -7,44 +8,36 @@ import entidades.Cliente;
 public class ClienteDAO extends DAO {
 
     public void guardarCliente(Cliente cliente) throws Exception {
-        try {
-            if (cliente == null) {
-                throw new Exception("El cliente no puede ser nulo.");
-            }
-            String sql = "INSERT INTO cliente (codigo_cliente, nombre_cliente, nombre_contacto, apellido_contacto, telefono"+
-                        ", fax, ciudad, region, pais, codigo_postal, id_empleado, limite_credito) VALUES ("+
-                        cliente.getCodigoCliente()+", '"+
-                        cliente.getNombreCliente()+"', '"+
-                        cliente.getNombreContacto()+"', '"+
-                        cliente.getApellidoContacto()+"', '"+
-                        cliente.getTelefono()+"', '"+
-                        cliente.getFax()+"', '"+
-                        cliente.getCiudad()+"', '"+
-                        cliente.getRegion()+"', '"+
-                        cliente.getPais()+"', '"+
-                        cliente.getCodigoPostal()+"', "+
-                        cliente.getIdEmpleado()+", "+
-                        cliente.getLimiteCredito()+");";
-            insertarModificarEliminarDataBase(sql);
-        } catch (Exception e) {
-            System.out.println("Error al guardar cliente: "+e.getMessage());
-            throw e;
-        } finally {
-            desconectarDataBase();
+        if (cliente == null) {
+            throw new Exception("El cliente no puede ser nulo.");
         }
+        String sql = "INSERT INTO cliente (codigo_cliente, nombre_cliente, nombre_contacto, apellido_contacto, telefono"+
+                    ", fax, ciudad, region, pais, codigo_postal, id_empleado, limite_credito) VALUES ("+
+                    cliente.getCodigoCliente()+", '"+
+                    cliente.getNombreCliente()+"', '"+
+                    cliente.getNombreContacto()+"', '"+
+                    cliente.getApellidoContacto()+"', '"+
+                    cliente.getTelefono()+"', '"+
+                    cliente.getFax()+"', '"+
+                    cliente.getCiudad()+"', '"+
+                    cliente.getRegion()+"', '"+
+                    cliente.getPais()+"', '"+
+                    cliente.getCodigoPostal()+"', "+
+                    cliente.getIdEmpleado()+", "+
+                    cliente.getLimiteCredito()+");";
+        insertarModificarEliminarDataBase(sql);
     }
 
     public void listarTodosLosClientes () throws Exception {
-        try {
             String sql = "SELECT id_cliente, nombre_contacto, apellido_contacto FROM cliente";
-            consultarDataBase(sql);
+            ResultSet rs = consultarDataBase(sql);
             List<Cliente> clientes = new ArrayList<>();
             
-            while (resultSet.next()) {
+            while (rs.next()) {
                 Cliente cliente = new Cliente();
-                cliente.setIdCliente(resultSet.getInt("id_cliente"));
-                cliente.setNombreContacto(resultSet.getString("nombre_contacto"));
-                cliente.setApellidoContacto(resultSet.getString("apellido_contacto"));
+                cliente.setIdCliente(rs.getInt("id_cliente"));
+                cliente.setNombreContacto(rs.getString("nombre_contacto"));
+                cliente.setApellidoContacto(rs.getString("apellido_contacto"));
                 clientes.add(cliente);
             }
             if (clientes.isEmpty()) {
@@ -54,35 +47,28 @@ public class ClienteDAO extends DAO {
             for (Cliente cliente : clientes) {
                 cliente.imprimirNyA();
             }
-            
-        } catch (Exception e) {
-            System.out.println("Error al listar los clientes: " + e.getMessage());
-            throw e;
-        } finally {
-            desconectarDataBase();
-        }
     }
 
     public Cliente buscarClientePorCodigo(int codigo) throws Exception {
         Cliente cliente = null;
         try {
             String sql = "SELECT * FROM cliente WHERE id_cliente = "+ codigo;
-            consultarDataBase(sql);
-            if (resultSet.next()) {
+            ResultSet rs = consultarDataBase(sql);
+            if (rs.next()) {
                 cliente = new Cliente();
-                cliente.setIdCliente(resultSet.getInt("id_cliente"));
-                cliente.setCodigoCliente(resultSet.getInt("codigo_cliente"));
-                cliente.setNombreCliente(resultSet.getString("nombre_cliente"));
-                cliente.setNombreContacto(resultSet.getString("nombre_contacto"));
-                cliente.setApellidoContacto(resultSet.getString("apellido_contacto"));
-                cliente.setTelefono(resultSet.getString("telefono"));
-                cliente.setFax(resultSet.getString("fax"));
-                cliente.setCiudad(resultSet.getString("ciudad"));
-                cliente.setRegion(resultSet.getString("region"));
-                cliente.setPais(resultSet.getString("pais"));
-                cliente.setCodigoPostal(resultSet.getString("codigo_postal"));
-                cliente.setIdEmpleado(resultSet.getInt("id_empleado"));
-                cliente.setLimiteCredito(resultSet.getDouble("limite_credito"));
+                cliente.setIdCliente(rs.getInt("id_cliente"));
+                cliente.setCodigoCliente(rs.getInt("codigo_cliente"));
+                cliente.setNombreCliente(rs.getString("nombre_cliente"));
+                cliente.setNombreContacto(rs.getString("nombre_contacto"));
+                cliente.setApellidoContacto(rs.getString("apellido_contacto"));
+                cliente.setTelefono(rs.getString("telefono"));
+                cliente.setFax(rs.getString("fax"));
+                cliente.setCiudad(rs.getString("ciudad"));
+                cliente.setRegion(rs.getString("region"));
+                cliente.setPais(rs.getString("pais"));
+                cliente.setCodigoPostal(rs.getString("codigo_postal"));
+                cliente.setIdEmpleado(rs.getInt("id_empleado"));
+                cliente.setLimiteCredito(rs.getDouble("limite_credito"));
 
                 System.out.println(cliente.toString());
             } else {
@@ -114,22 +100,22 @@ public class ClienteDAO extends DAO {
         List<Cliente> clientes = new ArrayList<>();
         try {
             String sql = "SELECT * FROM cliente WHERE id_empleado = "+idEmpleado;
-            consultarDataBase(sql);
-            while (resultSet.next()) {
+            ResultSet rs = consultarDataBase(sql);
+            while (rs.next()) {
                 Cliente cliente = new Cliente();
-                cliente.setIdCliente(resultSet.getInt("id_cliente"));
-                cliente.setCodigoCliente(resultSet.getInt("codigo_cliente"));
-                cliente.setNombreCliente(resultSet.getString("nombre_cliente"));
-                cliente.setNombreContacto(resultSet.getString("nombre_contacto"));
-                cliente.setApellidoContacto(resultSet.getString("apellido_contacto"));
-                cliente.setTelefono(resultSet.getString("telefono"));
-                cliente.setFax(resultSet.getString("fax"));
-                cliente.setCiudad(resultSet.getString("ciudad"));
-                cliente.setRegion(resultSet.getString("region"));
-                cliente.setPais(resultSet.getString("pais"));
-                cliente.setCodigoPostal(resultSet.getString("codigo_postal"));
-                cliente.setIdEmpleado(resultSet.getInt("id_empleado"));
-                cliente.setLimiteCredito(resultSet.getDouble("limite_credito"));
+                cliente.setIdCliente(rs.getInt("id_cliente"));
+                cliente.setCodigoCliente(rs.getInt("codigo_cliente"));
+                cliente.setNombreCliente(rs.getString("nombre_cliente"));
+                cliente.setNombreContacto(rs.getString("nombre_contacto"));
+                cliente.setApellidoContacto(rs.getString("apellido_contacto"));
+                cliente.setTelefono(rs.getString("telefono"));
+                cliente.setFax(rs.getString("fax"));
+                cliente.setCiudad(rs.getString("ciudad"));
+                cliente.setRegion(rs.getString("region"));
+                cliente.setPais(rs.getString("pais"));
+                cliente.setCodigoPostal(rs.getString("codigo_postal"));
+                cliente.setIdEmpleado(rs.getInt("id_empleado"));
+                cliente.setLimiteCredito(rs.getDouble("limite_credito"));
                 clientes.add(cliente);
             }
             if (clientes.isEmpty()) {
