@@ -1,0 +1,2 @@
+* text=auto   
+# "warning: in the working copy of '...', LF will be replaced by CRLF the next time Git touches it", indica que Git ha detectado una diferencia entre los tipos de finales de línea (EOL) en tu archivo.
